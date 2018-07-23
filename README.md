@@ -16,7 +16,7 @@
 * log模块使用seelog
 * config使用configor，yaml格式
 
-# 依赖
-[github.com/cihub/seelog]: http://github.com/cihub/seelog
-[github.com/jinzhu/configor]: http://github.com/jinzhu/configor
-[github.com/gin-gonic/gin]: http://github.com/gin-gonic/gin
+# 依赖 
+[github.com/cihub/seelog](http://github.com/cihub/seelog)
+[github.com/jinzhu/configor](http://github.com/jinzhu/configor)
+[github.com/gin-gonic/gin](http://github.com/gin-gonic/gin)
