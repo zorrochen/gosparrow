@@ -10,7 +10,8 @@ type Config struct {
 	ServerIP   string `yaml:"server_ip"`
 	ServerPort string `yaml:"server_port"`
 
-	EnableErrorLogMonitor bool `yaml:"enable_error_log_monitor"`
+	EnableLogMonitor bool   `yaml:"enable_log_monitor"`
+	LogMonitorUrl    string `yaml:"log_monitor_url"`
 }
 
 var Cfg *Config
