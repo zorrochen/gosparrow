@@ -9,6 +9,8 @@ import (
 type Config struct {
 	ServerIP   string `yaml:"server_ip"`
 	ServerPort string `yaml:"server_port"`
+
+	EnableErrorLogMonitor bool `yaml:"enable_error_log_monitor"`
 }
 
 var Cfg *Config
