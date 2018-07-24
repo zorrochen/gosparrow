@@ -12,13 +12,18 @@ import (
 	"time"
 )
 
-func Get(url string) ([]byte, int) {
+func Get(url string) (int, []byte) {
 	return reqProxy(url, "GET", nil, nil, 0)
 }
 
-func PostJson(url string, req interface{}) ([]byte, int) {
+func PostJson(url string, req interface{}) (int, []byte) {
 	reqjson, _ := json.Marshal(req)
-	return reqProxy(url, "POST", nil, reqjson, 0)
+
+	header := map[string]string{
+		"Content-Type": "application/json; charset=utf8",
+	}
+
+	return reqProxy(url, "POST", header, reqjson, 0)
 }
 
 // ================= 初始化 =================
@@ -40,11 +45,11 @@ func init() {
 }
 
 // ================= req =================
-func reqProxy(url string, method string, header map[string]string, data []byte, timeout int64) ([]byte, int) {
+func reqProxy(url string, method string, header map[string]string, data []byte, timeout int64) (int, []byte) {
 	// 请求初始化
 	request, err := http.NewRequest(method, url, bytes.NewReader(data))
 	if err != nil {
-		return nil, -1
+		return -1, nil
 	}
 
 	// 添加header
@@ -67,19 +72,19 @@ func reqProxy(url string, method string, header map[string]string, data []byte, 
 	// 发送请求
 	resp, err := httpClient.Do(request)
 	if err != nil {
-		return nil, -1
+		return -1, nil
 	}
 	defer resp.Body.Close()
 
 	// 读取响应body
 	body, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
-		return nil, -1
+		return -1, nil
 	}
 
 	// 添加返回打印
 	log.Log.Debug("[proxy-return] %s, %s", request.URL.String(), string(body))
 
 	// return
-	return body, resp.StatusCode
+	return resp.StatusCode, body
 }
