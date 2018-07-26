@@ -48,7 +48,7 @@ func Run(ip string, port string) {
 // TODO:添加用户id,版本号
 func ReqSimplePrint(c *gin.Context) {
 	// 打印请求
-	log.Log.Info("[ReqSimplePrint] %s, %s", c.Request.URL, pub.CopyHttpRequestBody(c.Request))
+	log.LOG.Info("[ReqSimplePrint] %s, %s", c.Request.URL, pub.CopyHttpRequestBody(c.Request))
 
 	// 计算耗时
 	t := time.Now()
@@ -57,10 +57,10 @@ func ReqSimplePrint(c *gin.Context) {
 	timecost := fmt.Sprintf("%d", ts/time.Millisecond)
 
 	// 打印结果
-	log.Log.Info("[ReqSimplePrint-resp] %s, %s(ms)", c.Request.URL, timecost)
+	log.LOG.Info("[ReqSimplePrint-resp] %s, %s(ms)", c.Request.URL, timecost)
 }
 
 // 404记录
 func NotFoundPrint(c *gin.Context) {
-	log.Log.Warn("[NotFoundPrint] %s, %s", c.Request.URL, pub.CopyHttpRequestBody(c.Request))
+	log.LOG.Warn("[NotFoundPrint] %s, %s", c.Request.URL, pub.CopyHttpRequestBody(c.Request))
 }

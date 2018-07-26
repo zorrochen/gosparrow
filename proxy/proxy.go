@@ -67,7 +67,7 @@ func reqProxy(url string, method string, header map[string]string, data []byte, 
 	request = request.WithContext(ctx)
 
 	// 添加请求打印
-	log.Log.Debug("[proxy-req] %s, %v, %s", request.URL.String(), request.Header, pub.CopyHttpRequestBody(request))
+	log.LOG.Debug("[proxy-req] %s, %v, %s", request.URL.String(), request.Header, pub.CopyHttpRequestBody(request))
 
 	// 发送请求
 	resp, err := httpClient.Do(request)
@@ -83,7 +83,7 @@ func reqProxy(url string, method string, header map[string]string, data []byte, 
 	}
 
 	// 添加返回打印
-	log.Log.Debug("[proxy-return] %s, %s", request.URL.String(), string(body))
+	log.LOG.Debug("[proxy-return] %s, %s", request.URL.String(), string(body))
 
 	// return
 	return resp.StatusCode, body

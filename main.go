@@ -30,7 +30,7 @@ func main() {
 	config.Init(*ConfPath)
 
 	// 日志初始化
-	log.LogInit(*LogCfgpath)
+	log.LogInit("gosparrow", *LogCfgpath, false, "")
 
 	// 业务模块初始化
 	handler.Init()
