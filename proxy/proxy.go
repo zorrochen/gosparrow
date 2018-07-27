@@ -9,6 +9,8 @@ import (
 	"io/ioutil"
 	"net"
 	"net/http"
+	"net/url"
+	"reflect"
 	"time"
 )
 
@@ -87,4 +89,18 @@ func reqProxy(url string, method string, header map[string]string, data []byte, 
 
 	// return
 	return resp.StatusCode, body
+}
+
+//结构体转GET请求的querystr
+func Struct2Querystr(s interface{}) string {
+	if reflect.TypeOf(s).Kind() != reflect.Struct {
+		return ""
+	}
+
+	uv := url.Values{}
+	for i := 0; i < reflect.TypeOf(s).NumField(); i++ {
+		uv.Add(reflect.TypeOf(s).Field(i).Tag.Get("json"), reflect.ValueOf(s).Field(i).String())
+	}
+
+	return uv.Encode()
 }
