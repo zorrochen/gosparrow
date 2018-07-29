@@ -36,9 +36,9 @@ func main() {
 	handler.Init()
 
 	// 服务启动
-	log.LOG.I("server start")
+	log.LOG.I("server start!!!")
 	http_server.Run(config.Cfg.ServerIP, config.Cfg.ServerPort)
-	log.LOG.I("server stoped")
+	log.LOG.I("server stoped!!!")
 }
 
 //====================version(from git) print====================
