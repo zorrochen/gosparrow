@@ -77,7 +77,7 @@ func (self *logger) Error(format string, args ...interface{}) error {
 	loginfo.FileLine = fmt.Sprintf("%s:%d", file, line)
 	loginfo.Content = seelogRet.Error()
 	if len(loginfo.Content) > 64 {
-		loginfo.Content = string([]byte(loginfo.Content)[:64]) //上传最大长度64
+		loginfo.Content = string([]rune(loginfo.Content)[:64]) //上传最大长度64
 	}
 	AsyncSendToLogMonitor(loginfo)
 
